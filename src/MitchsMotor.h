@@ -25,8 +25,8 @@ public:
 		else
 		{
 			if (speed < -256) speed = -256;
-			analogWrite(upPin, 256 + speed);  
-			analogWrite(downPin, 256); 
+			analogWrite(upPin, 256); 
+			analogWrite(downPin, 256 + speed);  
 		}
 	}
 
