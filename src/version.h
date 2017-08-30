@@ -1,1 +1,1 @@
-constexpr char mctl_version[]{ "V0.1" };
+constexpr char mctl_version[]{ "V0.1.1" };
