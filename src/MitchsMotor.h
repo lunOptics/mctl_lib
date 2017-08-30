@@ -14,7 +14,7 @@ public:
 	}
 	
 	/// Set raw motor speed (PWM output) in the range from -256...256	
-	inline void setSpeed(int speed)
+	inline void setPWM(int speed)
 	{
 		if (speed > 0)
 		{

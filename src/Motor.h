@@ -7,5 +7,5 @@
 class Motor
 {
 public:
-	virtual void setSpeed(int speed) = 0;
+	virtual void setPWM(int speed) = 0;
 };

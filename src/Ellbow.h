@@ -33,7 +33,7 @@ public:
 	{
 		input = encoder->counter;
 		pid->Compute();
-		motor->setSpeed(output);
+		motor->setPWM(output);
 	}
 
 

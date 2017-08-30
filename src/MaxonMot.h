@@ -9,7 +9,7 @@ template<int in1, int in2>
 class MaxonMotor : public Motor
 {
 public:
-	virtual void setSpeed(int s)
+	virtual void setPWM(int s)
 	{
 		speed = s;
 	}
