@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Base.h"
+#include "Shoulder.h"
 #include "Wrist.h"
 #include "Ellbow.h"
 
@@ -13,12 +15,14 @@ class IntervalTimer;
 class Arm
 {
 public:
-	Arm(Wrist* wrist, Ellbow* ellbow);	
+	Arm(Base*, Shoulder* _shoulder, Wrist* wrist, Ellbow* ellbow);
 
-	static Wrist* wrist;
+	static Base* base;
+	static Shoulder* shoulder;
 	static Ellbow* ellbow;
-	
-private:	
+	static Wrist* wrist;
+
+private:
 
 	IntervalTimer* pidTimer;
 

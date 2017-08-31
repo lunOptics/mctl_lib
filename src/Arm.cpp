@@ -1,27 +1,34 @@
 #include "Arm.h"
 #include "AltEncoder.h"
+#include "Base.h"
+#include "Shoulder.h"
 #include "Ellbow.h"
 #include "Wrist.h"
+
 #include "PID_v1.h"
 
 using namespace AltEncoder;
 
-Arm::Arm(Wrist* _wrist, Ellbow* _ellbow)
+Arm::Arm(Base* _base, Shoulder* _shoulder, Wrist* _wrist, Ellbow* _ellbow)
 {
+	base = _base;
+	shoulder = _shoulder;
 	wrist = _wrist;
 	ellbow = _ellbow;
-		
 
-//	// setup all PIDs and start regulating -----------------
-//	constexpr int sampleTime = 1; //ms
-//	//wrist->leftPID->SetSampleTime(sampleTime);
-//	//wrist->rightPID->SetSampleTime(sampleTime);
-//	ellbow->pid->SetSampleTime(sampleTime);
-//	pidTimer = new IntervalTimer();
-//	pidTimer->begin(pidISR, sampleTime * 1000);
+
+
+	//	// setup all PIDs and start regulating -----------------
+	//	constexpr int sampleTime = 1; //ms
+	//	//wrist->leftPID->SetSampleTime(sampleTime);
+	//	//wrist->rightPID->SetSampleTime(sampleTime);
+	//	ellbow->pid->SetSampleTime(sampleTime);
+	//	pidTimer = new IntervalTimer();
+	//	pidTimer->begin(pidISR, sampleTime * 1000);
 }
 
-
+Base* Arm::base;
+Shoulder* Arm::shoulder;
 Wrist* Arm::wrist;
 Ellbow* Arm::ellbow;
 
