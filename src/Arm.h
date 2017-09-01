@@ -15,7 +15,7 @@ class IntervalTimer;
 class Arm
 {
 public:
-	Arm(Base*, Shoulder* _shoulder, Wrist* wrist, Ellbow* ellbow);
+	Arm(Base*, Shoulder*,  Ellbow*, Wrist*);
 
 	static Base* base;
 	static Shoulder* shoulder;
@@ -28,7 +28,7 @@ private:
 
 	inline static void pidISR()
 	{
-		wrist->calcPID();
+		//wrist->calcPID();
 		ellbow->calcPID();
 	}
 

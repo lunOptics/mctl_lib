@@ -1,9 +1,10 @@
 #pragma once
-#include "core_pins.h"
+//#include "core_pins.h"
 #include "AltEncoder.h"
 #include "Motor.h"
 #include "PID_v1.h"
 
+#include "usb_serial.h"
 
 class Arm;
 class PID;
@@ -18,7 +19,9 @@ namespace AltEncoder
 class Ellbow
 {
 public:
-	Ellbow(Motor* motor, AltEncoder::Encoder* encoder);
+	Ellbow(Motor*, AltEncoder::Encoder*);
+
+	void setPidParameters(float kP, float kD, float kI, float limitLow, float limitHigh);
 
 	void rotateTo(float angle, float speed);
 
@@ -27,13 +30,13 @@ public:
 	AltEncoder::Encoder* encoder;
 
 	PID* pid;
-	float output, input, target;
+	float pidOutput, pidInput, target;
 
 	inline void calcPID()
 	{
-		input = encoder->counter;
+		pidInput = encoder->counter;
 		pid->Compute();
-		motor->setPWM(output);
+		motor->setPWM(pidOutput);
 	}
 
 

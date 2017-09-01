@@ -36,6 +36,7 @@ namespace AltEncoder
         {
             encList = _encList;
             timer.begin(isrEncoderRead, t);
+			timer.priority(16);
         }
 
         static void isrEncoderRead(void)
