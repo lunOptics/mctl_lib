@@ -1,41 +1,15 @@
 #pragma once
 
-
-#include "core_pins.h"
 #include "AltEncoder.h"
-#include "Motor.h"
-#include "PID_v1.h"
+#include "Module.h"
 
 class Arm;
-class PID;
 class Motor;
 
-namespace AltEncoder
-{
-	class Encoder;
-	class Controller;
-}
-
-class Shoulder
+class Shoulder : public Module
 {
 public:
-	Shoulder(Motor* motor, AltEncoder::Encoder* encoder);
-	
-public:
-	AltEncoder::Encoder* encoder;
-
-	PID* pid;
-	float output, input, target;
-
-	inline void calcPID()
-	{
-		input = encoder->counter;
-		pid->Compute();
-		motor->setPWM(output);
-	}
-
-	Motor* motor;
+	Shoulder(Motor* motor, AltEncoder::Encoder* encoder) : Module(motor, encoder) {};
 
 	friend Arm;
 };
-
