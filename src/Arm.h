@@ -7,7 +7,7 @@
 
 class IntervalTimer;
 
-namespace AltEncoder { class Encoder; class Controller; }
+namespace AltEncoder { class mctlEncoder; class Controller; }
 class PID;
 class IntervalTimer;
 

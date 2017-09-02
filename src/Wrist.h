@@ -4,24 +4,21 @@ class Arm;
 class PID;
 class Motor;
 
+class mctlEncoder;
+class Controller;
 
-namespace AltEncoder
-{
-	class Encoder;
-	class Controller;
-}
 
 class Wrist
 {
 public:
-	Wrist(Motor* leftMotor, Motor* rightMotor, AltEncoder::Encoder* leftEncoder, AltEncoder::Encoder* rightEncoder);
+	Wrist(Motor* leftMotor, Motor* rightMotor, mctlEncoder* leftEncoder, mctlEncoder* rightEncoder);
 
 	//private:
 public:
 	Motor* leftMotor;
 	Motor* rightMotor;
-	AltEncoder::Encoder* leftEncoder;
-	AltEncoder::Encoder* rightEncoder;
+	mctlEncoder* leftEncoder;
+	mctlEncoder* rightEncoder;
 
 	float outLeft, outRight, inLeft, inRight, targetLeft, targetRight;
 	PID* leftPID;

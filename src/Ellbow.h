@@ -1,15 +1,17 @@
 #pragma once
 
-#include "AltEncoder.h"
+
 #include "Module.h"
 
 class Arm;
 class Motor;
+class mctlEncoder;
+
 
 class Ellbow : public Module
 {
 public:
-	Ellbow(Motor* motor, AltEncoder::Encoder* encoder) : Module(motor, encoder) {};
+	Ellbow(Motor* motor, mctlEncoder* encoder) : Module(motor, encoder) {};
 
 	friend Arm;
 };

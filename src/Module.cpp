@@ -1,10 +1,10 @@
 #include "Module.h"
-#include "AltEncoder.h"
-#include "PID_v1.h"
+#include "mctlEncoder.h"
+#include "mctlPID.h"
 
-using namespace AltEncoder;
 
-Module::Module(Motor* motor, Encoder* encoder)
+
+Module::Module(Motor* motor, mctlEncoder* encoder)
 	:encoder(encoder), motor(motor)
 {
 	pid = new PID(&pidInput, &pidOutput, &target, 1, 0, 0, DIRECT);
