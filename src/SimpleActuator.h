@@ -42,6 +42,6 @@ public:
 	PID* pid;
 	float pidOutput, pidInput, pidTarget;
 	float moveDelta = 0, movementTarget = 0;
-	float maxSpeed = 10000;
+	float maxSpeed = 5000;
 };
 
