@@ -4,21 +4,21 @@ class Arm;
 class PID;
 class Motor;
 
-class mctlEncoder;
+class MctlEncoder;
 class Controller;
 
 
 class Wrist
 {
 public:
-	Wrist(Motor* leftMotor, Motor* rightMotor, mctlEncoder* leftEncoder, mctlEncoder* rightEncoder);
+	Wrist(Motor* leftMotor, Motor* rightMotor, MctlEncoder* leftEncoder, MctlEncoder* rightEncoder);
 
 	//private:
 public:
 	Motor* leftMotor;
 	Motor* rightMotor;
-	mctlEncoder* leftEncoder;
-	mctlEncoder* rightEncoder;
+	MctlEncoder* leftEncoder;
+	MctlEncoder* rightEncoder;
 
 	float outLeft, outRight, inLeft, inRight, targetLeft, targetRight;
 	PID* leftPID;

@@ -7,7 +7,7 @@
 
 class IntervalTimer;
 
-namespace AltEncoder { class mctlEncoder; class Controller; }
+class MctlEncoder; class Controller;
 class PID;
 class IntervalTimer;
 
@@ -15,7 +15,7 @@ class IntervalTimer;
 class Arm
 {
 public:
-	Arm(Base*, Shoulder*,  Ellbow*, Wrist*);
+	Arm(Base*, Shoulder*, Ellbow*, Wrist*);
 
 	void pidOn();
 	void pidOff();
@@ -25,6 +25,11 @@ public:
 	static Ellbow* ellbow;
 	static Wrist* wrist;
 
+	inline bool isMoving() { return base->isMoving() || shoulder->isMoving() || ellbow->isMoving(); }
+
+	void moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget);
+	//	void syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget);
+
 
 private:
 
@@ -32,7 +37,6 @@ private:
 
 	inline static void pidISR()
 	{
-		//wrist->calcPID();
 		base->calcPID();
 		shoulder->calcPID();
 		ellbow->calcPID();

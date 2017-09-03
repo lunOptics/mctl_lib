@@ -1,15 +1,17 @@
 #include "Arm.h"
-#include "mctlEncoder.h"
 #include "Base.h"
 #include "Shoulder.h"
 #include "Ellbow.h"
 #include "Wrist.h"
 
+#include "mctlEncoder.h"
 #include "mctlPID.h"
 
-#include "Arduino.h"
 
-using namespace AltEncoder;
+
+//#include "Arduino.h"
+
+
 
 Arm::Arm(Base* _base, Shoulder* _shoulder, Ellbow* _ellbow, Wrist* _wrist)
 {
@@ -22,7 +24,7 @@ Arm::Arm(Base* _base, Shoulder* _shoulder, Ellbow* _ellbow, Wrist* _wrist)
 	shoulder->pid->SetSampleTime(sampleTime);
 	ellbow->pid->SetSampleTime(sampleTime);
 	//wrist->pid->SetSampleTime(sampleTime);
-	
+
 	pidTimer = new IntervalTimer();
 }
 
@@ -35,6 +37,23 @@ void Arm::pidOff()
 {
 	pidTimer->end();
 }
+
+void Arm::moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
+{
+	base->moveDelta = 0.001*sampleTime * base->maxSpeed;
+	base->movementTarget = baseTarget;
+
+	shoulder->moveDelta = 0.001*sampleTime * shoulder->maxSpeed;
+	shoulder->movementTarget = shoulderTarget;
+
+	ellbow->moveDelta = 0.001*sampleTime *ellbow->maxSpeed,
+	ellbow->movementTarget = EllbowTarget;
+}
+
+//void Arm::syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
+//{
+//	TBD//
+//}
 
 
 

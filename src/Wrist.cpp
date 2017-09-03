@@ -14,7 +14,7 @@
 //	rightPID = new PID(&inLeft, &outLeft, &targetLeft, 0.0009, 0.0, 0.0, DIRECT);
 //}
 
-Wrist::Wrist(Motor* leftM, Motor* rightM , mctlEncoder* leftE, mctlEncoder* rightE)
+Wrist::Wrist(Motor* leftM, Motor* rightM , MctlEncoder* leftE, MctlEncoder* rightE)
 	:  leftMotor(leftM), rightMotor(rightM), leftEncoder(leftE), rightEncoder(rightE)
 {	
 	leftPID = new PID(&inLeft, &outLeft, &targetLeft, 0.0009, 0.0, 0.0, DIRECT);

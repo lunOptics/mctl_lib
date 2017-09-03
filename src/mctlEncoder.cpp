@@ -2,5 +2,5 @@
 #include "mctlEncoder.h"
 
 IntervalTimer Controller::timer;
-mctlEncoder** Controller::encList;
+MctlEncoder** Controller::encList;
 

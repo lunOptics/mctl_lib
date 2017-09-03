@@ -1,15 +1,15 @@
 #pragma once
 
-#include "Module.h"
+#include "SimpleActuator.h"
 
 class Arm;
 class Motor;
-class mctlEncoder;
+class MctlEncoder;
 
-class Base : public Module
+class Base : public SimpleActuator
 {
 public:
-	Base(Motor* motor, mctlEncoder* encoder) : Module(motor, encoder) {};
+	Base(Motor* motor, MctlEncoder* encoder) : SimpleActuator(motor, encoder) {};
 
 	friend Arm;
 };

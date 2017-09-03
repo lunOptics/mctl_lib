@@ -5,11 +5,6 @@
  * This Library is licensed under the MIT License
  **********************************************************************************************/
 
-#if ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
 
 #include "mctlPID.h"
 
@@ -17,8 +12,7 @@
   *    The parameters specified here are those for for which we can't set up
   *    reliable defaults, so we need to have the user set them.
   ***************************************************************************/
-PID::PID(float* Input, float* Output, float* Setpoint,
-	float Kp, float Ki, float Kd, int POn, int ControllerDirection)
+PID::PID(float* Input, float* Output, float* Setpoint, float Kp, float Ki, float Kd, int POn, int ControllerDirection)
 {
 	myOutput = Output;
 	myInput = Input;
@@ -41,8 +35,7 @@ PID::PID(float* Input, float* Output, float* Setpoint,
  *    to use Proportional on Error without explicitly saying so
  ***************************************************************************/
 
-PID::PID(float* Input, float* Output, float* Setpoint,
-	float Kp, float Ki, float Kd, int ControllerDirection)
+PID::PID(float* Input, float* Output, float* Setpoint, float Kp, float Ki, float Kd, int ControllerDirection)
 	:PID::PID(Input, Output, Setpoint, Kp, Ki, Kd, P_ON_E, ControllerDirection)
 {
 
@@ -84,8 +77,8 @@ bool PID::Compute()
 	*myOutput = output;
 
 	/*Remember some variables for next time*/
-	lastInput = input;	
-	return true;	
+	lastInput = input;
+	return true;
 }
 
 /* SetTunings(...)*************************************************************
@@ -129,8 +122,7 @@ void PID::SetSampleTime(int NewSampleTime)
 {
 	if (NewSampleTime > 0)
 	{
-		float ratio = (float)NewSampleTime
-			/ (float)SampleTime;
+		float ratio = (float)NewSampleTime / (float)SampleTime;
 		ki *= ratio;
 		kd /= ratio;
 		SampleTime = (unsigned long)NewSampleTime;

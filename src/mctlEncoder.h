@@ -8,10 +8,10 @@ class Controller;
 
 //--------------------------------------------------------------------------------------------
 
-class mctlEncoder
+class MctlEncoder
 {
 public:
-	mctlEncoder(int pinA, int pinB, int mode = INPUT) : counter(0), _pinA(pinA), _pinB(pinB)
+	MctlEncoder(int pinA, int pinB, int mode = INPUT) : counter(0), _pinA(pinA), _pinB(pinB)
 	{
 		pinMode(_pinA, INPUT);
 		pinMode(_pinB, INPUT);
@@ -31,7 +31,7 @@ class Controller
 {
 public:
 
-	static void begin(mctlEncoder** _encList, int t)
+	static void begin(MctlEncoder** _encList, int t)
 	{
 		encList = _encList;
 		timer.begin(isrEncoderRead, t);
@@ -42,7 +42,7 @@ public:
 	{
 		int current;
 		int diff;
-		mctlEncoder** encoder = encList;
+		MctlEncoder** encoder = encList;
 
 		while (*encoder != nullptr)
 		{
@@ -60,7 +60,7 @@ public:
 	}
 
 private:
-	static mctlEncoder** encList;
+	static MctlEncoder** encList;
 	static IntervalTimer timer;
 };
 
