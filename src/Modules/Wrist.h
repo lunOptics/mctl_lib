@@ -2,14 +2,6 @@
 
 #include "Actuators\DifferentialActuator.h"
 
-class RM_501;
-class PID;
-class Motor;
-
-class MctlEncoder;
-class Controller;
-
-
 class Wrist : public DifferentialActuator
 {
 public:

@@ -24,7 +24,8 @@ RM_501::RM_501(Base* _base, Shoulder* _shoulder, Ellbow* _ellbow, Wrist* _wrist)
 	base->pid->SetSampleTime(sampleTime);
 	shoulder->pid->SetSampleTime(sampleTime);
 	ellbow->pid->SetSampleTime(sampleTime);
-	//wrist->pid->SetSampleTime(sampleTime);
+	wrist->pid1->SetSampleTime(sampleTime);
+	wrist->pid2->SetSampleTime(sampleTime);
 
 	pidTimer = new IntervalTimer();
 }
