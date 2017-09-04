@@ -1,8 +1,9 @@
-#include "Arm.h"
-#include "Base.h"
-#include "Shoulder.h"
-#include "Ellbow.h"
-#include "Wrist.h"
+#include "RM_501.h"
+#include "Modules\Base.h"
+#include "Modules\Shoulder.h"
+#include "Modules\Ellbow.h"
+#include "Modules\Wrist.h"
+
 
 #include "mctlEncoder.h"
 #include "mctlPID.h"
@@ -13,7 +14,7 @@
 
 
 
-Arm::Arm(Base* _base, Shoulder* _shoulder, Ellbow* _ellbow, Wrist* _wrist)
+RM_501::RM_501(Base* _base, Shoulder* _shoulder, Ellbow* _ellbow, Wrist* _wrist)
 {
 	base = _base;
 	shoulder = _shoulder;
@@ -28,17 +29,17 @@ Arm::Arm(Base* _base, Shoulder* _shoulder, Ellbow* _ellbow, Wrist* _wrist)
 	pidTimer = new IntervalTimer();
 }
 
-void Arm::pidOn()
+void RM_501::pidOn()
 {
 	pidTimer->begin(pidISR, sampleTime * 1000);
 }
 
-void Arm::pidOff()
+void RM_501::pidOff()
 {
 	pidTimer->end();
 }
 
-void Arm::moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
+void RM_501::moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget, int wristRotTarget, int wristTiltTarget)
 {
 	base->moveDelta = 0.001*sampleTime * base->maxSpeed;
 	base->movementTarget = baseTarget;
@@ -46,8 +47,15 @@ void Arm::moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
 	shoulder->moveDelta = 0.001*sampleTime * shoulder->maxSpeed;
 	shoulder->movementTarget = shoulderTarget;
 
-	ellbow->moveDelta = 0.001*sampleTime *ellbow->maxSpeed,
+	ellbow->moveDelta = 0.001*sampleTime *ellbow->maxSpeed;
 	ellbow->movementTarget = EllbowTarget;
+
+	wrist->moveDelta1 = 0.001*sampleTime * wrist->maxSpeed;
+	wrist->moveDelta2 = 0.001*sampleTime * wrist->maxSpeed;
+
+	wrist->movementTarget1 = wristTiltTarget + wristRotTarget;
+	wrist->movementTarget2 = wristTiltTarget - wristRotTarget;
+
 }
 
 //void Arm::syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
@@ -57,9 +65,9 @@ void Arm::moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
 
 
 
-Base* Arm::base;
-Shoulder* Arm::shoulder;
-Wrist* Arm::wrist;
-Ellbow* Arm::ellbow;
+Base* RM_501::base;
+Shoulder* RM_501::shoulder;
+Wrist* RM_501::wrist;
+Ellbow* RM_501::ellbow;
 
 

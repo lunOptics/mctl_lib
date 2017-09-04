@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SimpleActuator.h"
+#include "..\Actuators\SimpleActuator.h"
 
 
 class Shoulder : public SimpleActuator

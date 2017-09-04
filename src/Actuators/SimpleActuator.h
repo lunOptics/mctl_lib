@@ -4,7 +4,7 @@
 #include "mctlPID.h"
 #include "wiring.h"
 
-class Arm;
+class RM_501;
 
 class SimpleActuator
 {

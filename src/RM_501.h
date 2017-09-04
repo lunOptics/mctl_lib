@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Base.h"
-#include "Shoulder.h"
-#include "Wrist.h"
-#include "Ellbow.h"
+#include "Modules\Base.h"
+#include "Modules\Shoulder.h"
+#include "Modules\Ellbow.h"
+#include "Modules\Wrist.h"
 
 class IntervalTimer;
 
@@ -12,10 +12,10 @@ class PID;
 class IntervalTimer;
 
 
-class Arm
+class RM_501
 {
 public:
-	Arm(Base*, Shoulder*, Ellbow*, Wrist*);
+	RM_501(Base*, Shoulder*, Ellbow*, Wrist*);
 
 	void pidOn();
 	void pidOff();
@@ -25,9 +25,9 @@ public:
 	static Ellbow* ellbow;
 	static Wrist* wrist;
 
-	inline bool isMoving() { return base->isMoving() || shoulder->isMoving() || ellbow->isMoving(); }
+	inline bool isMoving() { return base->isMoving() || shoulder->isMoving() || ellbow->isMoving() || wrist->isMoving(); }
 
-	void moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget);
+	void moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget,int wristRotTarget, int wristTiltTarget);
 	//	void syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget);
 
 
@@ -40,7 +40,7 @@ private:
 		base->calcPID();
 		shoulder->calcPID();
 		ellbow->calcPID();
-		//wrist->calcPID();
+		wrist->calcPID();
 	}
 
 	static constexpr int sampleTime = 1; //ms

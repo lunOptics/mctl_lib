@@ -1,12 +1,12 @@
 #pragma once
 
-#include "SimpleActuator.h"
+#include "..\Actuators\SimpleActuator.h"
 
 class Ellbow : public SimpleActuator
 {
 public:
 	Ellbow(Motor* motor, MctlEncoder* encoder) : SimpleActuator(motor, encoder) {};
 
-	friend Arm;
+	friend RM_501;
 };
 
