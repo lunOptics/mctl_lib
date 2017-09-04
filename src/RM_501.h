@@ -28,6 +28,7 @@ public:
 	inline bool isMoving() { return base->isMoving() || shoulder->isMoving() || ellbow->isMoving() || wrist->isMoving(); }
 
 	void moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget,int wristRotTarget, int wristTiltTarget);
+	void waitMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget, int wristRotTarget, int wristTiltTarget);
 	//	void syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget);
 
 

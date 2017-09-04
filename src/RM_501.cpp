@@ -54,8 +54,17 @@ void RM_501::moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget, 
 	wrist->moveDelta2 = 0.001*sampleTime * wrist->maxSpeed;
 
 	wrist->movementTarget1 = wristTiltTarget + wristRotTarget;
-	wrist->movementTarget2 = wristTiltTarget - wristRotTarget;
+	wrist->movementTarget2 = wristTiltTarget- wristRotTarget;
 
+}
+
+void RM_501::waitMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget, int wristRotTarget, int wristTiltTarget)
+{
+	moveAbsolute(baseTarget, shoulderTarget, EllbowTarget, wristRotTarget, wristTiltTarget);
+	while (isMoving())
+	{
+		delay(10);
+	}
 }
 
 //void Arm::syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)
