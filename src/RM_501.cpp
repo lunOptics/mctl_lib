@@ -1,10 +1,4 @@
 #include "RM_501.h"
-#include "Modules\Base.h"
-#include "Modules\Shoulder.h"
-#include "Modules\Ellbow.h"
-#include "Modules\Wrist.h"
-
-
 #include "mctlEncoder.h"
 #include "mctlPID.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Actuators\DifferentialActuator.h"
+#include "../Actuators/DifferentialActuator.h"
 
 class Wrist : public DifferentialActuator
 {

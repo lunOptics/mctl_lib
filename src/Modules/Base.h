@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Actuators\SimpleActuator.h"
+#include "../Actuators/SimpleActuator.h"
 
 class RM_501;
 class Motor;

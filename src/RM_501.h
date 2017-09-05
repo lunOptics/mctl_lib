@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Modules\Base.h"
-#include "Modules\Shoulder.h"
-#include "Modules\Ellbow.h"
-#include "Modules\Wrist.h"
+#include "Modules/Base.h"
+#include "Modules/Shoulder.h"
+#include "Modules/Ellbow.h"
+#include "Modules/Wrist.h"
 
 class IntervalTimer;
 
