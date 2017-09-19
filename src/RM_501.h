@@ -38,18 +38,18 @@ private:
 
 	inline static void pidISR()
 	{
-		base->calcPID();
+	//	base->calcPID();
 		shoulder->calcPID();
-		ellbow->calcPID();
-		wrist->calcPID();
+	//	ellbow->calcPID();
+	//	wrist->calcPID();
 	}
 
 	static constexpr int sampleTime = 1; //ms
 
 
-    float accelerationEnd, decelerationStart;
+    /*float accelerationEnd, decelerationStart;
     float sqrt_2a;
-    unsigned target;
+    unsigned target;*/
 
 };
 

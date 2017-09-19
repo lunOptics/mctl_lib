@@ -70,39 +70,48 @@ void RM_501::waitMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarg
 	}
 }
 
-void RM_501::moveAcc(uint32_t target, int maxSpeed, unsigned acc)
+void RM_501::moveAcc(uint32_t targett, int maxSpeed, unsigned acc)
 {    
-    unsigned vMin = 0;
-    uint32_t v = maxSpeed;
-    uint32_t a = acc;
-    this->target = target;
+    unsigned vMin = 10;
+    float v = maxSpeed;
+    float a = acc;
+    float tgt = targett; 
+
+    float ae, ds;
+   
     if (v == 0) return;
         
     if (v > vMin) // acceleration required
     {
         float dv = v - vMin;
-        float ae = dv * dv / (2.0f * a);  // length of acceleration phase
+        ae = dv * dv / (2.0f * a);  // length of acceleration phase
+     //   Serial.println(ae);
 
       //  if (ae > std::numeric_limits<uint32_t>::max()) return;  ///TBD Add error handling
 
-        accelerationEnd = std::min((uint32_t)ae, target / 2);
-        decelerationStart = target - accelerationEnd;
+        if (ae > tgt / 2.0f)
+        {
+            ae = tgt / 2.0f;
+        }
 
-        sqrt_2a = sqrtf(a * 2.0f);
+      
+        ds = tgt - ae;
+
+     //   sqrt_2a = sqrtf(a * 2.0f);
     }
     else  // constant velocity, no acceleration necessary
     {
-        accelerationEnd = 0;
-        decelerationStart = target;     
+        ae = 0;
+        ds = tgt;     
     }
        
-    Serial.printf("ae %d, ds %d, sqrt %f", accelerationEnd, decelerationStart, sqrt_2a);
+    Serial.printf("ae %f, ds %f\n", ae, ds);
 
     shoulder->a = a;
     shoulder->v = v;
-    shoulder->ae = sqrtf((2.0f*accelerationEnd)/a );
-    shoulder->ds = 3 * shoulder->ae;
-    shoulder->target = target;
+    shoulder->ae = ae;
+    shoulder->ds = ds;
+    shoulder->target = tgt;
 }
 
 //void Arm::syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget)

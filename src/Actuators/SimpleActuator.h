@@ -3,6 +3,9 @@
 #include "Motor.h"
 #include "mctlPID.h"
 #include "wiring.h"
+#include "math.h"
+
+//#include "usb_serial.h"
 
 class RM_501;
 
@@ -17,19 +20,26 @@ public:
 
     inline void calcPID()
     {
-        unsigned dt = millis() - startTime;
 
-      
-        if (dt < ae)
+        float vcur = 0;
+
+        if (pidTarget < ae)
         {
-            pidTarget = a / 2.0f * dt*dt;
-        } 
-        else if (dt < ds)
-        {
-            pidTarget = a / 2.0f * ae * ae + (dt - ae)* a*ae;
+            vcur = sqrtf(2.0*a*pidTarget+10);
         }
+        else if (pidTarget < ds)
+        {
+            vcur = v;
+        }
+        else if (pidTarget < target)
+        {
+            vcur = sqrtf(2.0*a*(target - pidTarget));
+        }
+        else vcur = 0; 
 
-        
+
+        pidTarget += (vcur * 0.001f);
+
         /*if (movementTarget - pidTarget >= moveDelta)
         {
             pidTarget += moveDelta;
@@ -45,7 +55,7 @@ public:
     */
         pidInput = encoder->counter;
         pid->Compute();
-        motor->setPWM(pidOutput);
+        motor->setPWM(pidOutput);     
     }
 
     //private:
