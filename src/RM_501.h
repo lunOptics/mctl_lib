@@ -30,7 +30,7 @@ public:
 	void moveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget,int wristRotTarget, int wristTiltTarget);
 	void waitMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget, int wristRotTarget, int wristTiltTarget);
 	//	void syncMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarget);
-
+    void moveAcc(uint32_t target, int maxSpeed, unsigned acc); 
 
 private:
 
@@ -45,6 +45,11 @@ private:
 	}
 
 	static constexpr int sampleTime = 1; //ms
+
+
+    float accelerationEnd, decelerationStart;
+    float sqrt_2a;
+    unsigned target;
 
 };
 
