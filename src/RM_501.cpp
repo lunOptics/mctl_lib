@@ -70,12 +70,12 @@ void RM_501::waitMoveAbsolute(int baseTarget, int shoulderTarget, int EllbowTarg
 	}
 }
 
-void RM_501::moveAcc(uint32_t targett, int maxSpeed, unsigned acc)
+void RM_501::moveAcc(uint32_t target, int maxSpeed, unsigned acc)
 {    
     unsigned vMin = 10;
     float v = maxSpeed;
     float a = acc;
-    float tgt = targett; 
+    float tgt = target; 
 
     float ae, ds;
    
@@ -93,7 +93,6 @@ void RM_501::moveAcc(uint32_t targett, int maxSpeed, unsigned acc)
         {
             ae = tgt / 2.0f;
         }
-
       
         ds = tgt - ae;
 

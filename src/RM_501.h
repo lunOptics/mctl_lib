@@ -38,10 +38,10 @@ private:
 
 	inline static void pidISR()
 	{
-	//	base->calcPID();
+		base->calcPID();
 		shoulder->calcPID();
-	//	ellbow->calcPID();
-	//	wrist->calcPID();
+		ellbow->calcPID();
+		//wrist->calcPID();
 	}
 
 	static constexpr int sampleTime = 1; //ms

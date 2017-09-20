@@ -16,27 +16,27 @@ public:
 
     virtual void setPidParameters(float kP, float kD, float kI, float limitLow, float limitHigh);
     virtual void setMaxSpeed(float stepsPerSecond) { maxSpeed = max(0.0f, min(10000.0f, stepsPerSecond)); }
-    inline bool isMoving() { return pidTarget != movementTarget; }
+    inline bool isMoving() { return (int)pidTarget != target; }
 
     inline void calcPID()
     {
-
         float vcur = 0;
 
-        if (pidTarget < ae)
+        if (fabs(pidTarget) < ae)
         {
-            vcur = sqrtf(2.0*a*pidTarget+10);
+            vcur = sqrtf(2.0f*a*fabs(pidTarget)+10);
         }
-        else if (pidTarget < ds)
+        else if (fabs(pidTarget) < ds)
         {
             vcur = v;
         }
-        else if (pidTarget < target)
+        else if (fabs(pidTarget) < fabs(target))
         {
-            vcur = sqrtf(2.0*a*(target - pidTarget));
+            vcur = sqrtf(2.0f*a*(fabs(target) - fabs(pidTarget)));
         }
         else vcur = 0; 
 
+        if (target < 0) vcur = -vcur;
 
         pidTarget += (vcur * 0.001f);
 
@@ -58,6 +58,8 @@ public:
         motor->setPWM(pidOutput);     
     }
 
+    void moveAcc(int32_t target, unsigned maxSpeed, unsigned acc);
+
     //private:
 
     Motor* motor;
@@ -72,6 +74,6 @@ public:
     int target = 0;
     float a = 0.0f;
     float v = 0.0f;
-    unsigned ae, ds;
+    unsigned ae=0, ds=0;
 };
 
